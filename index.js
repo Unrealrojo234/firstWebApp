@@ -8,14 +8,15 @@ app.use(express.json())
 //IMPORTING MODELS
 const Info = require('./models/info.model');
 
+
 //GETTING DATABASE CONNECTION STRING
 require('dotenv').config();
 const dataBase = process.env.MONGODB_API;
 
 
-app.post('/api/infos',async(req,res)=>{{
+app.post('/api/info',async(req,res)=>{{
     try {
-        const info = await Info.create();
+        const info = await Info.create(req.body);
         res.status(200).json(info);
         res.send(
             console.log(info)
